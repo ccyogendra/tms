@@ -29,7 +29,8 @@ class TasksController extends Controller
     public function create()
     {
         $status  = Status::all();
-        return view('backend.pages.tasks.create', compact('status'));
+        $user  = User::all();
+        return view('backend.pages.tasks.create', compact('status','user'));
     }
 
     public function store(Request $request)
@@ -65,7 +66,7 @@ class TasksController extends Controller
      */
     public function edit($id)
     {
-        $task = Task::find($id); //echo '<pre>'; print_r($task);die;
+        $task = Task::find($id); 
         $status  = Status::all();
         return view('backend.pages.tasks.edit', compact('task', 'status'));
     }

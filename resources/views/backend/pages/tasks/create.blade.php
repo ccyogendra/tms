@@ -54,31 +54,26 @@ Task - Manager
                                 <label for="task">Task</label>
                                 <input type="text" class="form-control" id="task" name="task" placeholder="Enter Task">
                             </div>
+                           
                             <div class="form-group col-md-6 col-sm-12">
-                                <label for="task_detail">Task Detail</label>
-                                <textarea 
-                                    class="form-control" 
-                                    id="task_detail" 
-                                    name="task_detail" 
-                                    placeholder="Task Detail"
-                                    rows="6"
-                                ></textarea>
+                                <label for="due_date">Due Date</label>
+                                <input type="date" class="form-control" id="due_date" name="due_date" value="{{ date('Y-m-d') }}">
                             </div>
                             
                         </div>
 
                         <div class="form-row">
                             <div class="form-group col-md-6 col-sm-12">
-                                <label for="start_date">Start Date</label>
-                                <input type="date" class="form-control" id="start_date" name="start_date" >
+                                <label for="task_detail">Task Details</label>
+                                <textarea 
+                                    class="form-control" 
+                                    id="task_detail" 
+                                    name="task_detail" 
+                                    placeholder="Task Details"
+                                    rows="6"
+                                ></textarea>
                             </div>
-                            <div class="form-group col-md-6 col-sm-12">
-                                <label for="due_date">Due Date</label>
-                                <input type="date" class="form-control" id="due_date" name="due_date" >
-                            </div>
-                        </div>
-
-                        <div class="form-row">
+                            
                             <div class="form-group col-md-6 col-sm-12">
                                 <label for="password">Status</label>
                                 <select name="status" id="status" class="form-control select2" >
@@ -93,9 +88,23 @@ Task - Manager
                                 @endforeach
                                 </select>
                             </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6 col-sm-12">
+                                <label for="start_date">Start Date</label>
+                                <input type="date" class="form-control" id="start_date" name="start_date" value="{{ date('Y-m-d') }}">
+                            </div>
                             <div class="form-group col-md-6 col-sm-12">
                                 <label for="assignee">Assignee</label>
-                                <input type="text" class="form-control" id="assignee" name="assignee" >
+                                <select name="status" id="status" class="form-control select2">
+                                    <option value="-1" selected disabled>Select Status</option>
+                                    @foreach ($status as $item)
+                                        <option value="{{ $item->name }}">
+                                            {{ $item->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         
@@ -123,6 +132,9 @@ Task - Manager
 <script>
   ClassicEditor
     .create( document.querySelector( '#task_detail' ) )
+    .then(editor => {
+                editor.ui.view.editable.element.style.height = '200px'; 
+            })
     .catch( error => console.error( error ) );
 </script>
 
