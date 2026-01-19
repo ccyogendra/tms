@@ -58,6 +58,15 @@
                         </ul>
                     </li>
                     @endif
+                    @if ($usr->can('dashboard.view'))
+                    <li>
+                        <a href="javascript:void(0)" aria-expanded="true"><i class="ti-pencil"></i><span>Task Manager</span></a>
+                        <ul class="collapse">
+                            <li class="{{ Route::is('admin.tasks.index') ? 'active' : '' }}"><a href="{{ route('admin.tasks.index') }}">Tasks</a></li>
+                            <li class="{{ Route::is('admin.tasks.create') ? 'active' : '' }}"><a href="{{ route('admin.tasks.create') }}">Create Task</a></li>
+                        </ul>
+                    </li>
+                    @endif
 
                 </ul>
             </nav>
